@@ -10,7 +10,11 @@
     </v-row>
     <v-row class="text-center" v-show="showLogin">
       <v-col cols="12">
-        <v-text-field v-model="id" label="아이디"></v-text-field>
+        <v-text-field
+          v-model="id"
+          label="아이디"
+          @keyup.enter="handleEnter"
+        ></v-text-field>
         <v-text-field
           v-model="pwd"
           label="비밀번호"
@@ -69,7 +73,8 @@ export default {
     },
     showSettingPage() {
       if (this.isAuth) {
-        window.location.href = "https://localhost:3000/setting";
+        window.location.href = "https://www.sync-team.co.kr/setting";
+        // window.location.href = "https://localhost/setting";
       } else {
         alert("로그인 하시오");
       }

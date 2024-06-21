@@ -18,7 +18,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://158.247.197.212:9090",
+        target: "https://localhost:9090",
         changeOrigin: true,
         secure: false,
         rejectUnauthorized: false,
@@ -29,7 +29,7 @@ export default defineConfig({
       key: fs.readFileSync(path.resolve(__dirname, "server.key")),
       cert: fs.readFileSync(path.resolve(__dirname, "server.crt")),
     },
-    port: 3000,
+    port: 443,
   },
   resolve: {
     alias: {
