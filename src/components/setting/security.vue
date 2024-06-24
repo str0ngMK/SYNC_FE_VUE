@@ -113,21 +113,9 @@
 }
 </style>
 <script>
-import setting from "@/services/setting-service";
-
 export default {
   name: "profile",
-  created() {
-    setting.getUserId().then((result) => {
-      if (result.result) {
-        this.id = result.value;
-      } else {
-        alert("로그인 만료됨");
-        window.location.href = "https://www.sync-team.co.kr/";
-        // window.location.href = "https://localhost/";
-      }
-    });
-  },
+  created() {},
   data: function () {
     return {
       id: null,

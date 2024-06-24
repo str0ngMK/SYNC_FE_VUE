@@ -72,12 +72,23 @@ export default {
         });
     },
     showSettingPage() {
-      if (this.isAuth) {
-        window.location.href = "https://www.sync-team.co.kr/setting";
+      const token = this.getCookie("JWT_TOKEN");
+      if (token) {
         // window.location.href = "https://localhost/setting";
+        window.location.href = "https://www.sync-team.co.kr/setting";
       } else {
         alert("로그인 하시오");
       }
+    },
+    getCookie(name) {
+      let matches = document.cookie.match(
+        new RegExp(
+          "(?:^|; )" +
+            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+            "=([^;]*)"
+        )
+      );
+      return matches ? decodeURIComponent(matches[1]) : undefined;
     },
   },
 };

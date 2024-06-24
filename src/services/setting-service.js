@@ -21,10 +21,10 @@ export default {
         });
     });
   },
-  putUserInfo: function (body) {
+  putUserInfo: function (params) {
     return new Promise((resolve) => {
       apiClient
-        .put("/api/user/modify", body)
+        .put("/api/user/modify/userInfo", params)
         .then((response) => {
           resolve(response.data);
         })
@@ -32,18 +32,6 @@ export default {
           if (error.response) {
             resolve(error.response.data);
           }
-        });
-    });
-  },
-  getUserId: function () {
-    return new Promise((resolve) => {
-      apiClient
-        .get("/api/user/id")
-        .then((response) => {
-          resolve(response.data);
-        })
-        .catch((error) => {
-          resolve(error.response.data);
         });
     });
   },
