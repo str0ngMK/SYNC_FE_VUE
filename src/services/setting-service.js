@@ -35,4 +35,46 @@ export default {
         });
     });
   },
+  getProject: function () {
+    return new Promise((resolve) => {
+      apiClient
+        .get("/api/user/project/get")
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            resolve(error.response.data);
+          }
+        });
+    });
+  },
+  postEmailSend: function (body) {
+    return new Promise((resolve) => {
+      apiClient
+        .post("/api/user/delAcc/email/send", body)
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            resolve(error.response.data);
+          }
+        });
+    });
+  },
+  getEmailVerification: function (params) {
+    return new Promise((resolve) => {
+      apiClient
+        .get("/api/user/delAcc/email", { params })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            resolve(error.response.data);
+          }
+        });
+    });
+  },
 };

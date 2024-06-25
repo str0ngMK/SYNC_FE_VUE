@@ -7,10 +7,24 @@ const apiClient = axios.create({
 });
 
 export default {
-  getAuth: function (params) {
+  login: function (params) {
     return new Promise((resolve) => {
       apiClient
         .post("/login", null, { params })
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            resolve(error.response.data);
+          }
+        });
+    });
+  },
+  getAuth: function () {
+    return new Promise((resolve) => {
+      apiClient
+        .get("/api/user/auth")
         .then((response) => {
           resolve(response.data);
         })

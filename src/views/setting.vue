@@ -21,6 +21,7 @@
         <!-- 프로필 설정 -->
         <v-main v-show="showProfile">
           <profile
+            :userId="userId"
             :username="username"
             :nickname="nickname"
             :position="position"
@@ -29,7 +30,7 @@
         </v-main>
         <!-- 보안 설정 -->
         <v-main v-show="showSecurity">
-          <security :userId="userId"></security>
+          <security></security>
         </v-main>
       </v-col>
     </v-row>

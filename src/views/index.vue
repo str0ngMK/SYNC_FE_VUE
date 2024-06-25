@@ -57,7 +57,7 @@ export default {
     getAuth(id, pwd) {
       let params = { id: id, password: pwd };
       jwt
-        .getAuth(params)
+        .login(params)
         .then((result) => {
           console.log("result: ", result);
           if (result.result) {
@@ -72,23 +72,15 @@ export default {
         });
     },
     showSettingPage() {
-      const token = this.getCookie("JWT_TOKEN");
-      if (token) {
-        // window.location.href = "https://localhost/setting";
-        window.location.href = "https://www.sync-team.co.kr/setting";
-      } else {
-        alert("로그인 하시오");
-      }
-    },
-    getCookie(name) {
-      let matches = document.cookie.match(
-        new RegExp(
-          "(?:^|; )" +
-            name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-            "=([^;]*)"
-        )
-      );
-      return matches ? decodeURIComponent(matches[1]) : undefined;
+      jwt.getAuth().then((result) => {
+        if (result.result) {
+          window.location.href = "https://www.sync-team.co.kr/setting";
+          // window.location.href = "https://localhost/setting";
+        } else {
+          console.log("result", result);
+          alert("로그인 하시오");
+        }
+      });
     },
   },
 };
