@@ -114,7 +114,7 @@
 </style>
 <script>
 export default {
-  name: "profile",
+  name: "alarm",
   created() {},
   data: function () {
     return {

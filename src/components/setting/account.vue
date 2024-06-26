@@ -161,7 +161,7 @@
 import setting from "@/services/setting-service";
 
 export default {
-  name: "profile",
+  name: "account",
   created() {},
   props: {
     userId: {
@@ -251,6 +251,8 @@ export default {
           if (result.result) {
             alert(result.message);
             this.is_send_email = true;
+          } else {
+            alert(result.message);
           }
         })
         .catch((error) => {

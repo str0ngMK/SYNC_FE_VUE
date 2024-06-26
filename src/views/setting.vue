@@ -20,17 +20,17 @@
         </v-navigation-drawer>
         <!-- 프로필 설정 -->
         <v-main v-show="showProfile">
-          <profile
+          <account
             :userId="userId"
             :username="username"
             :nickname="nickname"
             :position="position"
             :introduction="introduction"
-          ></profile>
+          ></account>
         </v-main>
         <!-- 보안 설정 -->
         <v-main v-show="showSecurity">
-          <security></security>
+          <alarm></alarm>
         </v-main>
       </v-col>
     </v-row>
@@ -39,20 +39,19 @@
 <style scoped></style>
 <script>
 import setting from "@/services/setting-service";
-import profile from "@/components/setting/profile.vue";
-import security from "@/components/setting/security.vue";
+import account from "@/components/setting/account.vue";
+import alarm from "@/components/setting/alarm.vue";
 
 export default {
   name: "setting",
   components: {
-    profile,
-    security,
+    account,
+    alarm,
   },
   created() {
     setting
       .getUserInfo()
       .then((result) => {
-        console.log("result: ", result);
         if (result.result) {
           this.userId = result.value.userId;
           this.username = result.value.username;
