@@ -74,8 +74,8 @@ export default {
     showSettingPage() {
       jwt.getAuth().then((result) => {
         if (result.result) {
-          window.location.href = "https://www.sync-team.co.kr/setting";
-          // window.location.href = "https://localhost/setting";
+          // window.location.href = "https://www.sync-team.co.kr/setting";
+          window.location.href = "https://localhost/setting";
         } else {
           console.log("result", result);
           alert("로그인 하시오");

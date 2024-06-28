@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import index from "@/views/index.vue";
 import setting from "@/views/setting.vue";
-import test from "@/views/test.vue";
+import test from "@/components/img/imageSetting.vue";
 
 const routes = [
   {

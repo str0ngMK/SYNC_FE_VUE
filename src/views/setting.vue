@@ -60,8 +60,8 @@ export default {
           this.introduction = result.value.introduction;
         } else {
           alert("로그인 만료됨");
-          window.location.href = "https://www.sync-team.co.kr/";
-          // window.location.href = "https://localhost/";
+          // window.location.href = "https://www.sync-team.co.kr/";
+          window.location.href = "https://localhost/";
         }
       })
       .catch((error) => {

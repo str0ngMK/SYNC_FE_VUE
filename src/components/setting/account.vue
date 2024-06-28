@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col class="d-flex justify-start align-center">
-        <div class="img mr-5"></div>
+        <imageSetting></imageSetting>
         <v-btn class="mr-5">변경</v-btn>
         <v-btn>삭제</v-btn>
       </v-col>
@@ -130,12 +130,6 @@
   </v-container>
 </template>
 <style scoped>
-.img {
-  width: 100px;
-  height: 100px;
-  background-color: lightgray;
-  border-radius: 50%;
-}
 .info-card {
   width: 100%;
   margin-top: 12px;
@@ -159,9 +153,13 @@
 </style>
 <script>
 import setting from "@/services/setting-service";
+import imageSetting from "@/components/img/imageSetting.vue";
 
 export default {
   name: "account",
+  components: {
+    imageSetting,
+  },
   created() {},
   props: {
     userId: {
@@ -197,6 +195,7 @@ export default {
       model_introduction: null,
       email: null,
       token: null,
+      show_cropper: false,
     };
   },
   methods: {
@@ -264,8 +263,8 @@ export default {
       setting.getEmailVerification(params).then((result) => {
         if (result.result) {
           alert("이용해 주셔서 감사합니다.");
-          // window.location.href = "https://localhost/";
-          window.location.href = "https://www.sync-team.co.kr/";
+          window.location.href = "https://localhost/";
+          // window.location.href = "https://www.sync-team.co.kr/";
         } else {
           alert(result.message);
         }
