@@ -90,6 +90,7 @@ img {
 </style>
 
 <script>
+import setting from "@/services/setting-service";
 import Cropper from "cropperjs";
 import "cropperjs/dist/cropper.css";
 
@@ -146,6 +147,19 @@ export default {
         this.src = canvas.toDataURL("image/png");
         this.cropper.destroy();
         this.cropper = null;
+
+        canvas.toBlob((blob) => {
+          let formData = new FormData();
+          formData.append("profileImg", blob, "img.jpg");
+          setting
+            .putProfileImg(formData)
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((error) => {
+              console.error("Error: ", error);
+            });
+        }, "image/jpeg");
       }
     },
   },

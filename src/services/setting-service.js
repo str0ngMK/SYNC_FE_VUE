@@ -77,4 +77,18 @@ export default {
         });
     });
   },
+  putProfileImg: function (body) {
+    return new Promise((resolve) => {
+      apiClient
+        .put("/api/user/modify/profileImg", body)
+        .then((response) => {
+          resolve(response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            resolve(error.response.data);
+          }
+        });
+    });
+  },
 };
