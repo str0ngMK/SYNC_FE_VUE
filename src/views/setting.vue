@@ -22,6 +22,7 @@
         <v-main v-show="showProfile">
           <account
             :userId="userId"
+            :profileImg="profileImg"
             :username="username"
             :nickname="nickname"
             :position="position"
@@ -54,14 +55,15 @@ export default {
       .then((result) => {
         if (result.result) {
           this.userId = result.value.userId;
+          this.profileImg = result.value.profileImg;
           this.username = result.value.username;
           this.nickname = result.value.nickname;
           this.position = result.value.position;
           this.introduction = result.value.introduction;
         } else {
           alert("로그인 만료됨");
-          // window.location.href = "https://www.sync-team.co.kr/";
-          window.location.href = "https://localhost/";
+          window.location.href = "https://www.sync-team.co.kr/";
+          // window.location.href = "https://localhost/";
         }
       })
       .catch((error) => {
@@ -73,6 +75,7 @@ export default {
       showProfile: true,
       showSecurity: false,
       userId: null,
+      profileImg: null,
       username: null,
       nickname: null,
       position: null,

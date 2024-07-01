@@ -7,7 +7,7 @@
     </v-row>
     <v-row>
       <v-col class="d-flex justify-start align-center">
-        <imageSetting></imageSetting>
+        <imageSetting :profileImg="profileImg"></imageSetting>
         <v-btn class="mr-5">변경</v-btn>
         <v-btn>삭제</v-btn>
       </v-col>
@@ -160,9 +160,12 @@ export default {
   components: {
     imageSetting,
   },
-  created() {},
   props: {
     userId: {
+      type: String,
+      required: true,
+    },
+    profileImg: {
       type: String,
       required: true,
     },
@@ -263,8 +266,8 @@ export default {
       setting.getEmailVerification(params).then((result) => {
         if (result.result) {
           alert("이용해 주셔서 감사합니다.");
-          window.location.href = "https://localhost/";
-          // window.location.href = "https://www.sync-team.co.kr/";
+          // window.location.href = "https://localhost/";
+          window.location.href = "https://www.sync-team.co.kr/";
         } else {
           alert(result.message);
         }

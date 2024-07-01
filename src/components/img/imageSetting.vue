@@ -3,7 +3,12 @@
     <div v-show="!select_image">
       <v-row>
         <v-col>
-          <div class="img mr-5">
+          <!-- <div class="img mr-5"> -->
+          <div
+            class="img mr-5"
+            :style="{ backgroundImage: 'url(' + this.profileImg + ')' }"
+          >
+            <!-- <img :src="profileImg" /> -->
             <label for="file">
               <v-icon icon="mdi-camera" class="img-upload"></v-icon>
             </label>
@@ -25,7 +30,7 @@
     <v-dialog v-model="select_image" width="auto">
       <v-card class="custom-dialog h-screen">
         <v-card-text>
-          <img ref="image" :src="src" class="hidden" />
+          <img ref="image" :src="src" class="preview_img hidden" />
         </v-card-text>
         <template v-slot:actions>
           <v-btn class="ms-auto" text="저장" @click="cropImage()"></v-btn>
@@ -55,18 +60,28 @@
 </template>
 
 <style scoped>
-img {
+/* img {
+  display: block;
+  max-width: 500px;
+  max-height: 500px;
+} */
+
+.preview_img {
   display: block;
   max-width: 500px;
   max-height: 500px;
 }
+
 .img {
   width: 100px;
   height: 100px;
   background-color: lightgray;
+  background-size: cover;
+  background-position: center center;
   border-radius: 50%;
   position: relative;
 }
+
 .img-upload {
   width: 35px;
   height: 35px;
@@ -100,12 +115,19 @@ export default {
     this.image = this.$refs.image;
   },
   computed: {},
+  props: {
+    profileImg: {
+      type: String,
+      required: true,
+    },
+  },
   data: function () {
     return {
       src: null,
       image: {},
       cropper: null,
       select_image: false,
+      is_profileImg: false,
     };
   },
   methods: {
@@ -142,9 +164,10 @@ export default {
       }
     },
     cropImage() {
+      this.select_image = false;
       if (this.cropper) {
         const canvas = this.cropper.getCroppedCanvas();
-        this.src = canvas.toDataURL("image/png");
+        // this.src = canvas.toDataURL("image/png");
         this.cropper.destroy();
         this.cropper = null;
 
@@ -155,6 +178,12 @@ export default {
             .putProfileImg(formData)
             .then((result) => {
               console.log(result);
+              if (result.result) {
+                // this.select_image = false;
+                location.reload();
+              } else {
+                alert(result.message);
+              }
             })
             .catch((error) => {
               console.error("Error: ", error);
@@ -185,6 +214,12 @@ export default {
         }
       }
     },
+  },
+  updated() {
+    console.log("이미지다: ", this.profileImg);
+    if (this.profileImg !== null) {
+      this.is_profileImg = true;
+    }
   },
 };
 </script>
